@@ -43,7 +43,6 @@
   <project name="qtgsettings" path="qtgsettings" groups="libraries"/>
 
   <project name="appcenter" path="appcenter" groups="apps"/>
-  <project name="browser" path="browser" groups="apps"/>
   <project name="calculator" path="calculator" groups="apps"/>
   <project name="files" path="files" groups="apps"/>
   <project name="player" path="player" groups="apps"/>
