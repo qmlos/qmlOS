@@ -1,0 +1,16 @@
+{
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "remoteUser": "liriuser",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "twxs.cmake",
+                "ms-vscode.cmake-tools",
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-extension-pack"
+            ]
+        }
+    }
+}

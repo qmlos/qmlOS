@@ -7,6 +7,8 @@
   <project name="repotools" path="misc/repotools" groups="misc"/>
   <project name="lirios" path="misc/manifest" groups="misc">
     <copyfile src="README.md" dest="README.md"/>
+    <copyfile src="config/_devcontainer/devcontainer.json" dest=".devcontainer/devcontainer.json"/>
+    <copyfile src="config/_devcontainer/Dockerfile" dest=".devcontainer/Dockerfile"/>
     <copyfile src="config/_clang-format" dest=".clang-format"/>
     <copyfile src="config/_commit-template" dest=".commit-template"/>
     <copyfile src="config/_dependencies.cmake" dest=".dependencies.cmake"/>
