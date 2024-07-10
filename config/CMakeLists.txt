@@ -28,16 +28,6 @@ include(LiriSubprojects)
 ## Liri specific setup common for all modules:
 include(LiriSetup)
 
-## Subprojects to build:
-set(LIRI_BUILD_SUBPROJECTS "" CACHE STRING "List of subprojects to build")
-if(NOT LIRI_BUILD_SUBPROJECTS)
-    if(DEFINED ENV{LIRI_BUILD_SUBPROJECTS})
-        set(LIRI_BUILD_SUBPROJECTS "${ENV{LIRI_BUILD_SUBPROJECTS}")
-    else()
-        _liri_internal_find_subprojects(LIRI_BUILD_SUBPROJECTS)
-    endif()
-endif()
-
 ## QML import path:
 set(QML_IMPORT_PATH ${CMAKE_SOURCE_DIR}/bin CACHE STRING "" FORCE)
 
@@ -48,16 +38,21 @@ list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 ## Installation directories:
 include(KDEInstallDirs)
 
-## Dependencies:
+## Subprojects to build:
 include(.dependencies.cmake)
-_liri_internal_sort_subprojects("${LIRI_BUILD_SUBPROJECTS}" LIRI_BUILD_SUBPROJECTS)
+set(LIRI_BUILD_SUBPROJECTS "" CACHE STRING "List of subprojects to build")
+if(DEFINED ENV{LIRI_BUILD_SUBPROJECTS})
+    set(LIRI_BUILD_SUBPROJECTS "${ENV{LIRI_BUILD_SUBPROJECTS}")
+endif()
+_liri_internal_find_subprojects(_subprojects "${LIRI_BUILD_SUBPROJECTS}")
 
 ## Add subprojects to build:
-cmake_print_variables(LIRI_BUILD_SUBPROJECTS)
-foreach(subproject IN LISTS LIRI_BUILD_SUBPROJECTS)
+cmake_print_variables(_subprojects)
+foreach(subproject IN LISTS _subprojects)
     message("== Add ${subproject}")
     add_subdirectory(${subproject})
 endforeach()
 
 ## Features:
+include(FeatureSummary)
 feature_summary(QUIET_ON_EMPTY WHAT ENABLED_FEATURES DISABLED_FEATURES)
